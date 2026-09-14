@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Signals becoming an explainable, human-reviewed case</title>
+  <desc id="desc">A dark navy graphic connecting source signals to evidence, analyst review, and authorized action.</desc>
+  <rect width="1200" height="630" fill="#071522"/>
+  <g fill="none" stroke="#2d5962" stroke-width="3">
+    <path d="M184 217h177M184 315h177M184 413h177M533 315h142M847 315h163"/>
+  </g>
+  <g fill="#0f2938" stroke="#52d0c7" stroke-width="2">
+    <rect x="64" y="167" width="120" height="100" rx="18"/><rect x="64" y="265" width="120" height="100" rx="18"/><rect x="64" y="363" width="120" height="100" rx="18"/>
+    <rect x="361" y="230" width="172" height="170" rx="22"/><rect x="675" y="230" width="172" height="170" rx="22"/><rect x="1010" y="260" width="126" height="110" rx="22"/>
+  </g>
+  <g fill="#eaf4f4" font-family="Arial, sans-serif" text-anchor="middle">
+    <text x="124" y="222" font-size="18">SIGNAL</text><text x="124" y="320" font-size="18">SOURCE</text><text x="124" y="418" font-size="18">LEGAL BASIS</text>
+    <text x="447" y="300" font-size="24">EXPLAINABLE</text><text x="447" y="332" font-size="24">CASE</text>
+    <text x="761" y="300" font-size="24">ANALYST</text><text x="761" y="332" font-size="24">REVIEW</text>
+    <text x="1073" y="315" font-size="18">AUTHORIZED</text><text x="1073" y="341" font-size="18">ACTION</text>
+  </g>
+  <text x="64" y="90" fill="#52d0c7" font-family="Arial, sans-serif" font-size="24" font-weight="700">MTX PUBLIC REVENUE SOLUTIONS</text>
+  <text x="64" y="138" fill="#fff" font-family="Arial, sans-serif" font-size="40" font-weight="700">Evidence, explanation, and human judgment.</text>
+  <text x="64" y="566" fill="#9fb5be" font-family="Arial, sans-serif" font-size="20">MTX Financial Cybersecurity · Public-revenue compliance decision support</text>
+</svg>
