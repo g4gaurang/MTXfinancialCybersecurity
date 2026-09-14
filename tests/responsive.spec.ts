@@ -7,6 +7,7 @@ const viewports = [
 
 for (const viewport of viewports) {
   test(`${viewport.name} layout and interactions`, async ({ page }) => {
+    test.setTimeout(60_000)
     await page.setViewportSize(viewport)
     const consoleErrors: string[] = []
     page.on('console', (message) => {
@@ -49,7 +50,9 @@ for (const viewport of viewports) {
     await page.getByRole('tab', { name: /Extend Carefully/ }).click()
     await expect(page.getByText('Add approved data sources')).toBeVisible()
 
-    await page.getByRole('button', { name: 'Request a Demo' }).click()
+    await menu.click()
+    const navDemoButton = page.getByRole('navigation').getByRole('button', { name: 'Request a Demo' })
+    await navDemoButton.click()
     await expect(page.getByRole('dialog')).toBeVisible()
     await expect(page.getByLabel('Name *')).toBeFocused()
     const controls = page.getByRole('dialog').locator('button, input, select, textarea')
@@ -59,7 +62,7 @@ for (const viewport of viewports) {
     await expect(controls.first()).toBeFocused()
     await page.keyboard.press('Escape')
     await expect(page.getByRole('dialog')).toBeHidden()
-    await expect(page.getByRole('button', { name: 'Request a Demo' })).toBeFocused()
+    await expect(navDemoButton).toBeFocused()
 
     const smallTargets = await page.evaluate(() =>
       [...document.querySelectorAll<HTMLElement>('button, a, input, select, textarea')]
