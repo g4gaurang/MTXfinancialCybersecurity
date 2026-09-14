@@ -23,13 +23,11 @@
     "@playwright/test": "^1.63.0",
     "@types/react": "latest",
     "@types/react-dom": "latest",
-    "autoprefixer": "latest",
     "eslint": "latest",
     "eslint-plugin-react-hooks": "latest",
     "eslint-plugin-react-refresh": "latest",
     "globals": "latest",
     "postcss": "latest",
-    "tailwindcss": "latest",
     "typescript": "latest",
     "typescript-eslint": "latest"
   }
