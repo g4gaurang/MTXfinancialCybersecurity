@@ -62,7 +62,7 @@ for (const viewport of viewports) {
     await expect(controls.first()).toBeFocused()
     await page.keyboard.press('Escape')
     await expect(page.getByRole('dialog')).toBeHidden()
-    await expect(navDemoButton).toBeFocused()
+    await expect(menu).toBeFocused()
 
     const smallTargets = await page.evaluate(() =>
       [...document.querySelectorAll<HTMLElement>('button, a, input, select, textarea')]

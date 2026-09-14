@@ -215,7 +215,11 @@ function Modal({ onClose }: { onClose: () => void }) {
     return () => {
       document.removeEventListener('keydown', handle)
       document.body.style.overflow = ''
-      previous?.focus()
+      if (previous?.offsetParent) {
+        previous.focus()
+      } else {
+        document.querySelector<HTMLElement>('[data-modal-fallback]')?.focus()
+      }
     }
   }, [onClose])
 
@@ -273,7 +277,7 @@ function Header({ openModal }: { openModal: () => void }) {
   return (
     <header className="site-header">
       <a className="wordmark" href="#top" aria-label="MTX Financial Cybersecurity home"><span>MTX</span><small>Financial Cybersecurity</small></a>
-      <button className="menu-button" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="site-navigation"><Menu /><span>Menu</span></button>
+      <button className="menu-button" data-modal-fallback onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="site-navigation"><Menu /><span>Menu</span></button>
       <nav id="site-navigation" aria-label="Primary navigation" className={open ? 'nav-open' : ''}>
         {nav.map(([label, id]) => <a key={id} href={`#${id}`} onClick={() => setOpen(false)}>{label}</a>)}
         <button className="button small primary" onClick={() => { setOpen(false); openModal() }}>Request a Demo</button>
