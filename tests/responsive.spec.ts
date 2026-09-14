@@ -33,7 +33,7 @@ for (const viewport of viewports) {
 
     await page.locator('#planned').scrollIntoViewIfNeeded()
     await page.getByRole('button', { name: 'Address A' }).click()
-    await expect(page.getByText(/Source: approved filing field/)).toBeVisible()
+    await expect(page.locator('.network-detail')).toContainText('Source: approved filing field')
     await page.getByText('Accessible relationship list').click()
     await expect(page.getByText(/Person A:/)).toBeVisible()
 
