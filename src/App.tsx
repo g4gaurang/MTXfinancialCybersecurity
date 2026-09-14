@@ -1,10 +1,9 @@
 import { FormEvent, KeyboardEvent, useEffect, useMemo, useRef, useState } from 'react'
 import {
-  Activity, ArrowRight, BadgeCheck, BarChart3, BookOpenCheck, Bot, Building2, Check,
-  CheckCircle2, ChevronDown, CircleAlert, ClipboardCheck, Clock3, Database, FileCheck2,
-  FileText, Filter, Fingerprint, GitCompareArrows, Layers3, LockKeyhole, Menu, Network,
-  PanelTop, Scale, Search, Settings2, ShieldCheck, SlidersHorizontal, Sparkles, UserCheck,
-  Users, X,
+  Activity, ArrowRight, BarChart3, BookOpenCheck, Bot, Check, CheckCircle2, ChevronDown,
+  CircleAlert, Clock3, Database, FileCheck2, Filter, Fingerprint, GitCompareArrows, Layers3,
+  LockKeyhole, Menu, Network, PanelTop, Scale, Settings2, ShieldCheck, SlidersHorizontal,
+  Sparkles, UserCheck, X,
 } from 'lucide-react'
 import {
   Bar, BarChart, CartesianGrid, Cell, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis,
@@ -100,6 +99,14 @@ const queueCases: QueueCase[] = [
   { id: 'CASE-D', type: 'Business', signal: 'Relationship indicator', priority: 'Monitoring', evidence: '3 of 3 sources', age: 22, analyst: 'S. Patel', status: 'Monitoring', approval: 'None at this stage', why: ['Approved relationship record', 'No consequential action proposed', 'Scheduled monitoring review'] },
   { id: 'CASE-E', type: 'Individual', signal: 'Document mismatch', priority: 'Closed', evidence: '3 of 3 sources', age: 3, analyst: 'J. Morgan', status: 'Closed', approval: 'Completed', why: ['Difference resolved by source correction', 'Analyst rationale recorded', 'Closure approved'] },
 ]
+
+const priorityOrder: Record<string, number> = {
+  'Review first': 0,
+  'Additional information needed': 1,
+  'Standard review': 2,
+  Monitoring: 3,
+  Closed: 4,
+}
 
 const scenarios = [
   {
@@ -372,12 +379,11 @@ function AnalystQueue() {
   const [sort, setSort] = useState('priority')
   const [opened, setOpened] = useState<QueueCase | null>(null)
   const [compare, setCompare] = useState<string[]>([])
-  const priorities: Record<string, number> = { 'Review first': 0, 'Additional information needed': 1, 'Standard review': 2, Monitoring: 3, Closed: 4 }
   const visible = useMemo(() => queueCases
     .filter((item) => type === 'Any' || item.type === type)
     .filter((item) => signal === 'Any' || item.signal === signal)
     .filter((item) => status === 'Any' || item.status === status)
-    .sort((a, b) => sort === 'age' ? b.age - a.age : priorities[a.priority] - priorities[b.priority]), [type, signal, status, sort])
+    .sort((a, b) => sort === 'age' ? b.age - a.age : priorityOrder[a.priority] - priorityOrder[b.priority]), [type, signal, status, sort])
   const toggleCompare = (id: string) => setCompare((items) => items.includes(id) ? items.filter((item) => item !== id) : items.length < 2 ? [...items, id] : [items[1], id])
   return (
     <section className="section" id="queue">
@@ -688,7 +694,7 @@ function Security() {
   )
 }
 
-const roadmap = [
+const roadmap: Array<[string, string, string[]]> = [
   ['Phase 1 — Demonstrate Safely', 'Initial release', ['Use synthetic data', 'Configure initial case types', 'Establish governance roles', 'Demonstrate explainability', 'Validate human-review workflows']],
   ['Phase 2 — Validate with Approved Data', 'Subject to agency approval', ['Select authorized data sources', 'Establish legal basis', 'Test data quality', 'Validate analytical methods', 'Complete privacy and security reviews']],
   ['Phase 3 — Introduce Controlled Operations', 'Potential', ['Deploy an initial use case', 'Train analysts', 'Monitor case handling', 'Review overrides', 'Evaluate model and workflow performance']],
